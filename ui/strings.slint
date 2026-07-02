@@ -6,6 +6,7 @@ struct Txt {
     params: string,
     secVarreduras: string,
     metodo: string,
+    algoritmo: string,
     vertices: string,
     simetria: string,
     tempo: string,
@@ -29,7 +30,7 @@ export global Textos {
         // 0 — Português
         {
             params: "PARÂMETROS", secVarreduras: "VARREDURAS",
-            metodo: "MÉTODO", vertices: "Número de vértices  n",
+            metodo: "MÉTODO", algoritmo: "ALGORITMO", vertices: "Número de vértices  n",
             simetria: "Quebra de simetria", tempo: "Tempo limite", semLimite: "sem limite",
             threads: "Paralelismo (threads)", backendSat: "Backend SAT",
             verbosidade: "Verbosidade do log", executar: "Executar",
@@ -41,7 +42,7 @@ export global Textos {
         // 1 — English
         {
             params: "PARAMETERS", secVarreduras: "SWEEP",
-            metodo: "METHOD", vertices: "Number of vertices  n",
+            metodo: "METHOD", algoritmo: "ALGORITHM", vertices: "Number of vertices  n",
             simetria: "Symmetry breaking", tempo: "Time limit", semLimite: "no limit",
             threads: "Parallelism (threads)", backendSat: "SAT backend",
             verbosidade: "Log verbosity", executar: "Run",
@@ -53,7 +54,7 @@ export global Textos {
         // 2 — Español
         {
             params: "PARÁMETROS", secVarreduras: "BARRIDOS",
-            metodo: "MÉTODO", vertices: "Número de vértices  n",
+            metodo: "MÉTODO", algoritmo: "ALGORITMO", vertices: "Número de vértices  n",
             simetria: "Ruptura de simetría", tempo: "Límite de tiempo", semLimite: "sin límite",
             threads: "Paralelismo (hilos)", backendSat: "Backend SAT",
             verbosidade: "Verbosidad del registro", executar: "Ejecutar",
@@ -76,6 +77,14 @@ export global Textos {
         Estado.idioma == 1 ? ["Silent", "Normal", "Detailed"]
       : Estado.idioma == 2 ? ["Silenciosa", "Normal", "Detallada"]
       :                      ["Silenciosa", "Normal", "Detalhada"];
+
+    // Algoritmos do metodo ENUMERAÇÃO (2o dropdown quando Metodo = Enumeração).
+    out property <[string]> algEnum:
+        Estado.idioma == 1 ? ["Naive algorithm (labeled enumeration)", "Labeled enumeration with pruning and backtracking", "Unlabeled enumeration (nauty/geng)"]
+      : Estado.idioma == 2 ? ["Algoritmo ingenuo (enumeración de etiquetados)", "Enumeración de etiquetados con poda y backtracking", "Enumeración de no etiquetados (nauty/geng)"]
+      :                      ["Algoritmo ingênuo (enumeração de rotulados)", "Enumeração de rotulados com poda e backtracking", "Enumeração de não-rotulados (nauty/geng)"];
+    // Estrategias do metodo SAT — termos tecnicos, iguais nos tres idiomas.
+    out property <[string]> algSat: ["DPLL", "CDCL", "Cube-and-Conquer", "SAT + CAS"];
 
     // Subtemas (variante de cor) — Terminal/Nord sao nomes proprios; Âmbar traduz.
     out property <[string]> temas:

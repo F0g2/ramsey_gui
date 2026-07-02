@@ -10,6 +10,11 @@ import { Dropdown } from "dropdown.slint";
 export component Sidebar inherits Rectangle {
     callback executar;
 
+    // Espelha o metodo so para reagir a sua troca: ao mudar de Enumeração<->SAT,
+    // zera o 2o dropdown (algoritmo) para o indice nunca ficar fora da nova lista.
+    property <int> metodo-espelho: Estado.metodo;
+    changed metodo-espelho => { Estado.algoritmo = 0; }
+
     min-width: 268px;
     max-width: 268px;
     background: Tema.panel-bg;
@@ -35,6 +40,16 @@ export component Sidebar inherits Rectangle {
                 Dropdown {
                     opcoes: Textos.metodos;
                     indice <=> Estado.metodo;
+                }
+            }
+
+            // 2o dropdown (em cascata): opcoes dependem do metodo escolhido.
+            VerticalLayout {
+                spacing: 7px;
+                Text { text: Textos.x.algoritmo; color: Tema.label; font-size: 10px; font-weight: 600; }
+                Dropdown {
+                    opcoes: Estado.metodo == 0 ? Textos.algEnum : Textos.algSat;
+                    indice <=> Estado.algoritmo;
                 }
             }
 
