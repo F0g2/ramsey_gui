@@ -1,17 +1,20 @@
 // Sistema de temas (global = singleton acessivel por qualquer componente).
 //
-// Ideia: cada tema HERDA de uma BASE (clara ou escura) e so sobrescreve as
-// cores marcantes (accent, console, arestas). Os neutros (fundos, bordas,
-// texto) vem da base. Assim nao repetimos ~25 cores por tema.
+// DOIS EIXOS (independentes):
+//   - base:     claro/escuro  -> decide os NEUTROS (fundos, bordas, texto).
+//   - variante: Terminal/Âmbar/Nord -> decide as MARCANTES (accent, console, arestas).
+// A mesma variante existe nas duas bases; os neutros sao compartilhados por base.
 //
-// id: 0 Terminal · 1 Âmbar (CRT) · 2 Nord · 3 Claro
+// claro:    false = escuro (padrao) · true = claro
+// variante: 0 Terminal · 1 Âmbar (CRT) · 2 Nord
 export global Tema {
-    in-out property <int> id: 0;
+    in-out property <bool> claro: false;
+    in-out property <int> variante: 0;
 
-    // Apenas "Claro" usa base clara; os demais usam base escura.
-    out property <bool> escuro: id != 3;
+    // Escuro e o oposto de claro; dirige tanto os neutros quanto o color-scheme.
+    out property <bool> escuro: !claro;
 
-    // ---- Neutros: vem da BASE (claro/escuro) ----
+    // ---- Neutros: dependem so da BASE (iguais para todas as variantes) ----
     out property <color> win-bg:       escuro ? #0a0d0b : #ffffff;
     out property <color> panel-bg:     escuro ? #0b0f0d : #fbfbfb;
     out property <color> titlebar:     escuro ? #141a16 : #ededed;
@@ -25,21 +28,30 @@ export global Tema {
     out property <color> section:      escuro ? #69db7c : #6a7280;
     out property <color> title-text:   escuro ? #8aa992 : #555555;
 
-    // ---- Marcantes: sobrescritas por TEMA (id) ----
+    // ---- Marcantes: dependem da VARIANTE (e da base, para claro/escuro) ----
+    // Cada marcante e uma tabela variante x base. No escuro as cores sao vivas
+    // (accent claro); no claro sao escuras e fortes (mais contraste no fundo branco).
     out property <color> accent:
-        id == 0 ? #2ea043 : id == 1 ? #ffb000 : id == 2 ? #88c0d0 : #2ea043;
+        escuro ? (variante == 0 ? #29d849 : variante == 1 ? #ffc033 : #5ebfdb)
+               : (variante == 0 ? #0c3313 : variante == 1 ? #322001 : #263b55);
     out property <color> console-bg:
-        id == 0 ? #070908 : id == 1 ? #0a0703 : id == 2 ? #272c36 : #f6f8f6;
+        escuro ? (variante == 0 ? #070908 : variante == 1 ? #0a0703 : #272c36)
+               : (variante == 0 ? #f6f8f6 : variante == 1 ? #fbf4e6 : #e5e9f0);
     out property <color> console-text:
-        id == 0 ? #6fdd83 : id == 1 ? #ffb000 : id == 2 ? #a3be8c : #1f6f3a;
+        escuro ? (variante == 0 ? #6fdd83 : variante == 1 ? #ffb000 : #a3be8c)
+               : (variante == 0 ? #1f6f3a : variante == 1 ? #8a5a00 : #3b6ea5);
     out property <color> console-dim:
-        id == 0 ? #3c5e45 : id == 1 ? #6b531d : id == 2 ? #5e6878 : #9bb0a0;
+        escuro ? (variante == 0 ? #3c5e45 : variante == 1 ? #6b531d : #5e6878)
+               : (variante == 0 ? #9bb0a0 : variante == 1 ? #c2ab80 : #9aa4b8);
     out property <color> edge-a:
-        id == 0 ? #e5534b : id == 1 ? #ffb000 : id == 2 ? #bf616a : #d2493f;
+        escuro ? (variante == 0 ? #e5534b : variante == 1 ? #ffb000 : #bf616a)
+               : (variante == 0 ? #d2493f : variante == 1 ? #c0561a : #bf616a);
     out property <color> edge-b:
-        id == 0 ? #56a0d6 : id == 1 ? #e0561a : id == 2 ? #81a1c1 : #2f6fb0;
-    out property <color> btn-bg:
-        id == 0 ? #238636 : id == 1 ? #a9710a : id == 2 ? #5e81ac : #2f3540;
-    out property <color> btn-text:
-        id == 0 ? #eafff0 : id == 1 ? #fff1cf : id == 2 ? #eceff4 : #ffffff;
+        escuro ? (variante == 0 ? #56a0d6 : variante == 1 ? #e0561a : #81a1c1)
+               : (variante == 0 ? #2f6fb0 : variante == 1 ? #9a6b00 : #5e81ac);
+
+    // Botao = a propria cor de destaque (accent). O texto do botao acompanha a
+    // base: escuro no modo escuro (accent claro), claro no modo claro (accent escuro).
+    out property <color> btn-bg: accent;
+    out property <color> btn-text: escuro ? #0d120f : #f4fff7;
 }

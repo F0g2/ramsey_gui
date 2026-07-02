@@ -16,7 +16,11 @@ export component Switch inherits Rectangle {
         width: 17px;
         height: 17px;
         border-radius: 9px;
-        background: Tema.btn-text;
+        // Knob claro fixo + bordinha sutil: visivel tanto no trilho aceso
+        // (accent) quanto no apagado (input-border), no claro e no escuro.
+        background: #f7fbf8;
+        border-width: 1px;
+        border-color: #0000002e;
         y: (parent.height - self.height) / 2;
         x: ligado ? parent.width - self.width - 3px : 3px;
         animate x { duration: 150ms; }

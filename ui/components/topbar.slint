@@ -5,6 +5,7 @@ import { Tema } from "../theme.slint";
 import { Estado } from "../estado.slint";
 import { Textos } from "../strings.slint";
 import { Dropdown } from "dropdown.slint";
+import { Switch } from "switch.slint";
 
 // Uma aba estilo "sublinhado": rotulo em cima, barrinha accent embaixo.
 // Empilha os dois com VerticalLayout (irmao vertical do HorizontalLayout).
@@ -97,7 +98,19 @@ export component TopBar inherits Rectangle {
             Dropdown {
                 min-width: 128px;
                 opcoes: Textos.temas;
-                indice <=> Tema.id;
+                indice <=> Tema.variante;
+            }
+            // Chave da base (tom geral): escuro <-> claro.
+            Text {
+                text: Tema.claro ? Textos.bases[1] : Textos.bases[0];
+                vertical-alignment: center;
+                horizontal-alignment: right;
+                min-width: 44px;
+                color: Tema.muted;
+                font-size: 11px;
+            }
+            Switch {
+                ligado <=> Tema.claro;
             }
         }
     }

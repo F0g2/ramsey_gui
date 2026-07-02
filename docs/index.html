@@ -6,8 +6,8 @@
     <title>Ramsey GUI</title>
     
 <script type="module">
-import init, * as bindings from '/ramsey_gui/ramsey_gui-842a8370347b91c6.js';
-const wasm = await init({ module_or_path: '/ramsey_gui/ramsey_gui-842a8370347b91c6_bg.wasm' });
+import init, * as bindings from '/ramsey_gui/ramsey_gui-25e263ef4d1991fa.js';
+const wasm = await init({ module_or_path: '/ramsey_gui/ramsey_gui-25e263ef4d1991fa_bg.wasm' });
 
 
 window.wasmBindings = bindings;
@@ -20,6 +20,6 @@ dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
         html, body { margin: 0; height: 100%; background: #0a0d0b; overflow: hidden; }
         canvas { outline: none; }
     </style>
-<link rel="modulepreload" href="/ramsey_gui/ramsey_gui-842a8370347b91c6.js" crossorigin="anonymous" integrity="sha384-5fKdToYmQvXlu7Zu2JEizOHIrp4JUM9GqvdELvCCPTiwPZn4/MH2WyqdlXn3n5iT"><link rel="preload" href="/ramsey_gui/ramsey_gui-842a8370347b91c6_bg.wasm" crossorigin="anonymous" integrity="sha384-pZssnWxXNLAZ3fAfLZm3e9lyMth6I97ziIdNgzwoWrUADPeoN+8hav2ijJPHSOoC" as="fetch" type="application/wasm"></head>
+<link rel="modulepreload" href="/ramsey_gui/ramsey_gui-25e263ef4d1991fa.js" crossorigin="anonymous" integrity="sha384-7rD0nSHWpi14yPyRUprYBBvqMUeihF6Oo6kXj2/YSQlUILxISmrp7SA/IQvB+7il"><link rel="preload" href="/ramsey_gui/ramsey_gui-25e263ef4d1991fa_bg.wasm" crossorigin="anonymous" integrity="sha384-DKxZIPY1Lt3IC9qWWKyU83W8jO7E+qXJiE7TDECLx4Bvinx9+juadDcbwdRoRpTe" as="fetch" type="application/wasm"></head>
 <body></body>
 </html>
