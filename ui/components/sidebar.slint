@@ -1,5 +1,5 @@
-// Sidebar: parametros (Principal) e opcoes (Avançado), + botao Executar.
-// Le/escreve o Estado. Dropdowns ainda via ComboBox (viram PopupWindow no 5b).
+// Sidebar: parametros (Instâncias) e opcoes (Varreduras), + botao Executar.
+// Le/escreve o Estado.
 import { Tema } from "../theme.slint";
 import { Estado } from "../estado.slint";
 import { Textos } from "../strings.slint";
@@ -19,13 +19,13 @@ export component Sidebar inherits Rectangle {
         spacing: 16px;
 
         Text {
-            text: Estado.aba == 0 ? Textos.x.params : Textos.x.avancado;
+            text: Estado.aba == 0 ? Textos.x.params : Textos.x.secVarreduras;
             color: Tema.section;
             font-size: 11px;
             font-weight: 700;
         }
 
-        // ===== Aba Principal =====
+        // ===== Aba Instâncias =====
         if Estado.aba == 0: VerticalLayout {
             spacing: 16px;
 
@@ -59,7 +59,7 @@ export component Sidebar inherits Rectangle {
             }
         }
 
-        // ===== Aba Avançado =====
+        // ===== Aba Varreduras =====
         if Estado.aba == 1: VerticalLayout {
             spacing: 16px;
 

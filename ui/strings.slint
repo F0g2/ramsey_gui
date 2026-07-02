@@ -4,7 +4,7 @@ import { Estado } from "estado.slint";
 
 struct Txt {
     params: string,
-    avancado: string,
+    secVarreduras: string,
     metodo: string,
     vertices: string,
     simetria: string,
@@ -16,8 +16,8 @@ struct Txt {
     executar: string,
     lblIdioma: string,
     lblTema: string,
-    tabPrincipal: string,
-    tabAvancado: string,
+    abaInstancias: string,
+    abaVarreduras: string,
     viz: string,
     grafo: string,
     log: string,
@@ -28,37 +28,37 @@ export global Textos {
     out property <[Txt]> tabela: [
         // 0 — Português
         {
-            params: "PARÂMETROS", avancado: "VARREDURAS",
+            params: "PARÂMETROS", secVarreduras: "VARREDURAS",
             metodo: "MÉTODO", vertices: "Número de vértices  n",
             simetria: "Quebra de simetria", tempo: "Tempo limite", semLimite: "sem limite",
             threads: "Paralelismo (threads)", backendSat: "Backend SAT",
             verbosidade: "Verbosidade do log", executar: "Executar",
             lblIdioma: "IDIOMA", lblTema: "TEMA",
-            tabPrincipal: "Instâncias", tabAvancado: "Varreduras",
+            abaInstancias: "Instâncias", abaVarreduras: "Varreduras",
             viz: "VISUALIZAÇÃO", grafo: "grafo em breve",
             log: "LOG DE EXECUÇÃO", vazio: "Configure os parametros e clique em Executar.",
         },
         // 1 — English
         {
-            params: "PARAMETERS", avancado: "SWEEP",
+            params: "PARAMETERS", secVarreduras: "SWEEP",
             metodo: "METHOD", vertices: "Number of vertices  n",
             simetria: "Symmetry breaking", tempo: "Time limit", semLimite: "no limit",
             threads: "Parallelism (threads)", backendSat: "SAT backend",
             verbosidade: "Log verbosity", executar: "Run",
             lblIdioma: "LANGUAGE", lblTema: "THEME",
-            tabPrincipal: "Instances", tabAvancado: "Sweep",
+            abaInstancias: "Instances", abaVarreduras: "Sweep",
             viz: "VISUALIZATION", grafo: "graph soon",
             log: "EXECUTION LOG", vazio: "Set the parameters and click Run.",
         },
         // 2 — Español
         {
-            params: "PARÁMETROS", avancado: "BARRIDOS",
+            params: "PARÁMETROS", secVarreduras: "BARRIDOS",
             metodo: "MÉTODO", vertices: "Número de vértices  n",
             simetria: "Ruptura de simetría", tempo: "Límite de tiempo", semLimite: "sin límite",
             threads: "Paralelismo (hilos)", backendSat: "Backend SAT",
             verbosidade: "Verbosidad del registro", executar: "Ejecutar",
             lblIdioma: "IDIOMA", lblTema: "TEMA",
-            tabPrincipal: "Instancias", tabAvancado: "Barridos",
+            abaInstancias: "Instancias", abaVarreduras: "Barridos",
             viz: "VISUALIZACIÓN", grafo: "grafo pronto",
             log: "REGISTRO DE EJECUCIÓN", vazio: "Configura los parámetros y haz clic en Ejecutar.",
         },

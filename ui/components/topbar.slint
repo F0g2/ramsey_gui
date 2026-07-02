@@ -1,4 +1,4 @@
-// Barra superior: abas (Principal/Avançado) à esquerda, seletores à direita.
+// Barra superior: abas (Instâncias/Varreduras) à esquerda, seletores à direita.
 // As abas sao primitivos (Rectangle+Text+TouchArea) para seguir os 4 temas.
 // Os seletores usam ComboBox por ora (viram PopupWindow custom no Passo 5).
 import { Tema } from "../theme.slint";
@@ -60,12 +60,12 @@ export component TopBar inherits Rectangle {
             horizontal-stretch: 0;
             spacing: 6px;
             Aba {
-                rotulo: Textos.x.tabPrincipal;
+                rotulo: Textos.x.abaInstancias;
                 ativa: Estado.aba == 0;
                 clicado => { Estado.aba = 0; }
             }
             Aba {
-                rotulo: Textos.x.tabAvancado;
+                rotulo: Textos.x.abaVarreduras;
                 ativa: Estado.aba == 1;
                 clicado => { Estado.aba = 1; }
             }
