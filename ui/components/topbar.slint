@@ -13,6 +13,14 @@ component Aba inherits Rectangle {
     in property <bool> ativa;
     callback clicado;
 
+    border-radius: 5px;
+    // Fundo: aba ativa ganha um veu leve do accent; passar o mouse (has-hover
+    // do TouchArea) acende um veu ainda mais leve. with-alpha deixa a cor
+    // translucida, entao funciona tanto no tema claro quanto no escuro.
+    background: ativa
+        ? Tema.accent.with-alpha(0.14)
+        : (toque.has-hover ? Tema.accent.with-alpha(0.07) : transparent);
+
     VerticalLayout {
         padding-left: 14px;
         padding-right: 14px;
@@ -32,7 +40,7 @@ component Aba inherits Rectangle {
             background: ativa ? Tema.accent : transparent;
         }
     }
-    TouchArea {
+    toque := TouchArea {
         clicked => { root.clicado(); }
     }
 }
